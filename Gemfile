@@ -82,5 +82,5 @@ gem 'jp_prefecture' # 住所自動入力(要検討)
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
-gem 'carrierwave' # 画像複数投稿(要検討)
+gem 'rmagick'
 gem 'mini_magick'
