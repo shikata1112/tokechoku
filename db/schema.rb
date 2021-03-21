@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_19_101701) do
+ActiveRecord::Schema.define(version: 2021_03_20_112648) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "last_name", null: false, comment: "姓"
@@ -35,6 +35,33 @@ ActiveRecord::Schema.define(version: 2021_03_19_101701) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vendors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "last_name", null: false, comment: "姓"
+    t.string "first_name", null: false, comment: "名"
+    t.string "kana_last_name", null: false, comment: "セイ"
+    t.string "kana_first_name", null: false, comment: "メイ"
+    t.string "shop_name", null: false, comment: "店舗名"
+    t.text "introduction", comment: "店舗紹介"
+    t.string "email", null: false, comment: "メールアドレス"
+    t.string "birth_date", null: false, comment: "生年月日"
+    t.string "phone_number", null: false, comment: "電話番号"
+    t.string "postcode", null: false, comment: "郵便番号"
+    t.string "prefacture", null: false, comment: "都道府県"
+    t.string "city", null: false, comment: "市区町村"
+    t.string "address", null: false, comment: "番地"
+    t.string "building", comment: "ビル・建物名"
+    t.string "encrypted_password", null: false, comment: "パスワード"
+    t.boolean "is_active", default: true, null: false, comment: "有効性"
+    t.boolean "is_certificated", default: false, null: false, comment: "身分証明済み"
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_vendors_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_vendors_on_reset_password_token", unique: true
   end
 
 end
