@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2021_03_19_101701) do
     t.string "kana_first_name", null: false, comment: "メイ"
     t.string "nickname", null: false, comment: "購入者名"
     t.string "email", null: false, comment: "メールアドレス"
+    t.string "birth_date", null: false, comment: "生年月日"
     t.string "phone_number", null: false, comment: "電話番号"
     t.string "postcode", null: false, comment: "郵便番号"
     t.string "prefacture", null: false, comment: "都道府県"
