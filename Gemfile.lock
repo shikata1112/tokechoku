@@ -339,8 +339,6 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.8.1)
       tilt (~> 2.0)
-    skylight (5.0.1)
-      activesupport (>= 5.2.0)
     slack-notifier (2.3.2)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
@@ -439,7 +437,6 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   shoulda-matchers
-  skylight
   slack-notifier
   spring
   spring-watcher-listen (~> 2.0.0)
