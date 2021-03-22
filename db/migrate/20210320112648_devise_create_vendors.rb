@@ -33,6 +33,7 @@ class DeviseCreateVendors < ActiveRecord::Migration[6.0]
       t.timestamps null: false
     end
 
+    add_index :vendors, :shop_name,            unique: true
     add_index :vendors, :email,                unique: true
     add_index :vendors, :reset_password_token, unique: true
   end
