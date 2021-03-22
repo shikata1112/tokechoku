@@ -67,7 +67,7 @@ gem 'kaminari'
 gem 'rubocop', '~> 1.4', require: false
 gem 'dotenv-rails'
 gem 'slack-notifier'
-gem 'skylight'
+# gem 'skylight'
 
 gem 'devise' 
 gem 'devise-bootstrap-views'
