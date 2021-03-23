@@ -3,7 +3,7 @@ class CreateWatches < ActiveRecord::Migration[6.0]
     create_table :watches do |t|
 
       t.references :maker, null: false, comment: "メーカーID"
-      t.references :model. null: false, comment: "モデルID"
+      t.references :model, null: false, comment: "モデルID"
       t.string :name, null: false, comment: "商品名"
       t.string :brand, null: false, comment: "ブランド名"
       t.integer :condition, null: false, comment: "コンディション"

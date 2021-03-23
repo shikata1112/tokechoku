@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_065140) do
+ActiveRecord::Schema.define(version: 2021_03_23_095353) do
+
+  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "encrypted_password", null: false
+    t.integer "admin_number", null: false, comment: "管理者番号"
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_number"], name: "index_admins_on_admin_number", unique: true
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
 
   create_table "makers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false, comment: "メーカー名称"
@@ -77,6 +91,31 @@ ActiveRecord::Schema.define(version: 2021_03_22_065140) do
     t.index ["email"], name: "index_vendors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_vendors_on_reset_password_token", unique: true
     t.index ["shop_name"], name: "index_vendors_on_shop_name", unique: true
+  end
+
+  create_table "watches", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "maker_id", null: false, comment: "メーカーID"
+    t.bigint "model_id", null: false, comment: "モデルID"
+    t.string "name", null: false, comment: "商品名"
+    t.string "brand", null: false, comment: "ブランド名"
+    t.integer "condition", null: false, comment: "コンディション"
+    t.string "model_number", null: false, comment: "モデルナンバー"
+    t.string "dial", null: false, comment: "文字盤カラー"
+    t.string "case_size", null: false, comment: "ケースサイズ"
+    t.string "movement", null: false, comment: "ムーブメント"
+    t.string "material", null: false, comment: "素材"
+    t.string "tax_price", null: false, comment: "販売価格(税込)"
+    t.string "warranty_date", null: false, comment: "保証書記載日(年月)"
+    t.string "accessory", null: false, comment: "付属品"
+    t.text "remarks", null: false, comment: "備考欄"
+    t.boolean "credit_card_payment", default: false, null: false, comment: "クレジットカード払いの可否"
+    t.boolean "is_active", default: true, null: false, comment: "有効性"
+    t.boolean "in_stock", default: true, null: false, comment: "在庫の有無"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["maker_id"], name: "index_watches_on_maker_id"
+    t.index ["model_id"], name: "index_watches_on_model_id"
+    t.index ["name", "brand", "model_number"], name: "index_watches_on_name_and_brand_and_model_number"
   end
 
 end
