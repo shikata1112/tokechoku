@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_23_095353) do
+ActiveRecord::Schema.define(version: 2021_03_23_124725) do
+
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.string "postcode", null: false
+    t.string "prefacture", null: false
+    t.string "city", null: false
+    t.string "house_number", null: false
+    t.string "building"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
@@ -118,4 +131,5 @@ ActiveRecord::Schema.define(version: 2021_03_23_095353) do
     t.index ["name", "brand", "model_number"], name: "index_watches_on_name_and_brand_and_model_number"
   end
 
+  add_foreign_key "addresses", "users"
 end
