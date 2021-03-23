@@ -93,4 +93,29 @@ ActiveRecord::Schema.define(version: 2021_03_23_095353) do
     t.index ["shop_name"], name: "index_vendors_on_shop_name", unique: true
   end
 
+  create_table "watches", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "maker_id", null: false, comment: "メーカーID"
+    t.bigint "model_id", null: false, comment: "モデルID"
+    t.string "name", null: false, comment: "商品名"
+    t.string "brand", null: false, comment: "ブランド名"
+    t.integer "condition", null: false, comment: "コンディション"
+    t.string "model_number", null: false, comment: "モデルナンバー"
+    t.string "dial", null: false, comment: "文字盤カラー"
+    t.string "case_size", null: false, comment: "ケースサイズ"
+    t.string "movement", null: false, comment: "ムーブメント"
+    t.string "material", null: false, comment: "素材"
+    t.string "tax_price", null: false, comment: "販売価格(税込)"
+    t.string "warranty_date", null: false, comment: "保証書記載日(年月)"
+    t.string "accessory", null: false, comment: "付属品"
+    t.text "remarks", null: false, comment: "備考欄"
+    t.boolean "credit_card_payment", default: false, null: false, comment: "クレジットカード払いの可否"
+    t.boolean "is_active", default: true, null: false, comment: "有効性"
+    t.boolean "in_stock", default: true, null: false, comment: "在庫の有無"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["maker_id"], name: "index_watches_on_maker_id"
+    t.index ["model_id"], name: "index_watches_on_model_id"
+    t.index ["name", "brand", "model_number"], name: "index_watches_on_name_and_brand_and_model_number"
+  end
+
 end
