@@ -13,13 +13,13 @@
 ActiveRecord::Schema.define(version: 2021_03_23_124725) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "name", null: false
-    t.string "postcode", null: false
-    t.string "prefacture", null: false
-    t.string "city", null: false
-    t.string "house_number", null: false
-    t.string "building"
+    t.bigint "user_id", null: false, comment: "ユーザーID"
+    t.string "name", null: false, comment: "宛先名"
+    t.string "postcode", null: false, comment: "郵便番号"
+    t.string "prefacture", null: false, comment: "都道府県"
+    t.string "city", null: false, comment: "市区町村"
+    t.string "house_number", null: false, comment: "番地"
+    t.string "building", comment: "ビル・建物名"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
