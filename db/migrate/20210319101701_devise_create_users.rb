@@ -16,7 +16,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :postcode, null: false, comment: "郵便番号"
       t.string :prefacture, null: false, comment: "都道府県"
       t.string :city, null: false, comment: "市区町村"
-      t.string :address, null: false, comment: "番地"
+      t.string :house_number, null: false, comment: "番地"
       t.string :building, comment: "ビル・建物名"
       t.string :encrypted_password, null: false, comment: "パスワード"
       t.boolean :is_active, null: false, default: true, comment: "有効性"
