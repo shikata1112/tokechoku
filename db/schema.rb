@@ -143,4 +143,6 @@ ActiveRecord::Schema.define(version: 2021_03_23_134526) do
   add_foreign_key "addresses", "users"
   add_foreign_key "watch_lists", "users"
   add_foreign_key "watch_lists", "watches"
+  add_foreign_key "watches", "makers"
+  add_foreign_key "watches", "models"
 end
