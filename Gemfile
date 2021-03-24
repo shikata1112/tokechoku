@@ -84,3 +84,5 @@ gem "refile-mini_magick"
 
 gem 'rmagick'
 gem 'mini_magick'
+
+gem 'payjp'
