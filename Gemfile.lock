@@ -211,6 +211,8 @@ GEM
     parallel (1.20.1)
     parser (3.0.0.0)
       ast (~> 2.4.1)
+    payjp (0.0.7)
+      rest-client (~> 2.0)
     popper_js (1.16.0)
     pry (0.14.0)
       coderay (~> 1.1)
@@ -422,6 +424,7 @@ DEPENDENCIES
   listen
   mini_magick
   mysql2 (>= 0.4.4)
+  payjp
   pry-rails
   puma (~> 4.1)
   rack-mini-profiler
