@@ -57,9 +57,11 @@ ActiveRecord::Schema.define(version: 2021_03_24_111026) do
   end
 
   create_table "models", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "maker_id", null: false, comment: "メーカーID"
     t.string "name", null: false, comment: "時計モデル名称"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["maker_id"], name: "index_models_on_maker_id"
     t.index ["name"], name: "index_models_on_name", unique: true
   end
 
@@ -178,6 +180,7 @@ ActiveRecord::Schema.define(version: 2021_03_24_111026) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "cards", "users"
+  add_foreign_key "models", "makers"
   add_foreign_key "orders", "users"
   add_foreign_key "orders", "watches"
   add_foreign_key "watch_lists", "users"
