@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_23_134526) do
+ActiveRecord::Schema.define(version: 2021_03_24_092117) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
@@ -52,6 +52,32 @@ ActiveRecord::Schema.define(version: 2021_03_23_134526) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_models_on_name", unique: true
+  end
+
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false, comment: "ユーザーID"
+    t.bigint "watch_id", null: false, comment: "腕時計ID"
+    t.integer "billing_amount", null: false, comment: "請求金額（税込）"
+    t.string "billing_name", null: false, comment: "請求先名称"
+    t.string "billing_phone_number", null: false, comment: "請求先電話番号"
+    t.string "billing_postcode", null: false, comment: "請求先郵便番号"
+    t.string "billing_prefacture", null: false, comment: "請求先都道府県"
+    t.string "billing_city", null: false, comment: "請求先市区町村"
+    t.string "billing_house_number", null: false, comment: "請求先番地"
+    t.string "billing_building", null: false, comment: "請求先ビル・建物名"
+    t.string "delivery_name", null: false, comment: "配送先名称"
+    t.string "delivery_postcode", null: false, comment: "配送先郵便番号"
+    t.string "delivery_prefacture", null: false, comment: "配送先都道府県"
+    t.string "delivery_city", null: false, comment: "配送先市区町村"
+    t.string "delivery_house_number", null: false, comment: "配送先番地"
+    t.string "delivery_building", null: false, comment: "配送先ビル・建物名"
+    t.string "delivery_time", null: false, comment: "お届け希望時間帯"
+    t.integer "payment_method", null: false, comment: "支払い方法"
+    t.integer "status", null: false, comment: "ステータス"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+    t.index ["watch_id"], name: "index_orders_on_watch_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -142,6 +168,8 @@ ActiveRecord::Schema.define(version: 2021_03_23_134526) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "orders", "users"
+  add_foreign_key "orders", "watches"
   add_foreign_key "watch_lists", "users"
   add_foreign_key "watch_lists", "watches"
   add_foreign_key "watches", "makers"
