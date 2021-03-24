@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_23_124725) do
+ActiveRecord::Schema.define(version: 2021_03_23_134526) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
@@ -106,6 +106,15 @@ ActiveRecord::Schema.define(version: 2021_03_23_124725) do
     t.index ["shop_name"], name: "index_vendors_on_shop_name", unique: true
   end
 
+  create_table "watch_lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false, comment: "ユーザーID"
+    t.bigint "watch_id", null: false, comment: "腕時計ID"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_watch_lists_on_user_id"
+    t.index ["watch_id"], name: "index_watch_lists_on_watch_id"
+  end
+
   create_table "watches", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "maker_id", null: false, comment: "メーカーID"
     t.bigint "model_id", null: false, comment: "モデルID"
@@ -132,6 +141,8 @@ ActiveRecord::Schema.define(version: 2021_03_23_124725) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "watch_lists", "users"
+  add_foreign_key "watch_lists", "watches"
   add_foreign_key "watches", "makers"
   add_foreign_key "watches", "models"
 end
