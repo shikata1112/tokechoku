@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2021_03_23_134526) do
     t.string "city", null: false, comment: "市区町村"
     t.string "house_number", null: false, comment: "番地"
     t.string "building", comment: "ビル・建物名"
+    t.string "phone_number", null: false, comment: "電話番号"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
