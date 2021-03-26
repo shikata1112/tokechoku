@@ -7,19 +7,7 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-
-  scope module: :common do
-    get "top", to: 'home#top'
-    get "about", to: 'home#about'
-    get "user_guide", to: 'home#user_guide'
-    get "warranty", to: 'home#warranty'
-    get "vendor_guide", to: 'home#vendor_guide'
-
-    resources :watches, only: [:show, :index]
-    resources :brands, only: [:index]
-    resources :models, only: [:index]
-  end
-
+  
   scope module: :user do
     resources :orders, only: [:new, :create, :show], path_names: { new: "process" } do
       get "history", to: 'orders#index', on: :collection
