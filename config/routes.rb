@@ -3,15 +3,15 @@ Rails.application.routes.draw do
   # devise_for :vendors
 
   devise_for :user, controllers: {
-    sessions:      'users/sessions',
-    passwords:     'users/passwords',
-    registrations: 'users/registrations'
+    sessions:      "users/sessions",
+    passwords:     "users/passwords",
+    registrations: "users/registrations"
   }
   
   scope module: :user do
     resources :orders, only: [:new, :create, :show], path_names: { new: "process" } do
-      get "history", to: 'orders#index', on: :collection
-      # TODO: 注文確認ページの有無を決定して追加する
+      get "history", to: "orders#index", on: :collection
+      get "payment", to: "orders#payment", on: :collection
     end
 
     resource :user, only: [:show, :edit, :update]
