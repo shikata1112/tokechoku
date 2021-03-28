@@ -1,14 +1,4 @@
 Rails.application.routes.draw do
-  namespace :common do
-    get 'models/index'
-  end
-  namespace :common do
-    get 'brands/index'
-  end
-  namespace :common do
-    get 'watches/index'
-    get 'watches/show'
-  end
   # devise_for :admins
   # devise_for :vendors
 
