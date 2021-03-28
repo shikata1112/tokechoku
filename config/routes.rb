@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
   # devise_for :admins
-  # devise_for :vendors
 
-  devise_for :user, controllers: {
+  devise_for :users, controllers: {
     sessions:      "users/sessions",
     passwords:     "users/passwords",
     registrations: "users/registrations"
+  }
+
+  devise_for :vendors, controllers: {
+    sessions:      "vendors/sessions",
+    passwords:     "vendors/passwords",
+    registrations: "vendors/registrations"
   }
 
   scope module: :common do
@@ -33,5 +38,14 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :create, :edit, :update, :destroy], path_names: { edit: "update" }
     resources :watch_lists, only: [:index, :create, :destroy]
     resources :cards, only: [:index, :create, :edit, :update, :destroy], path_names: { edit: "update" }
+  end
+
+  namespace :vendor do
+    resources :watches, path_names: { new: "registration", edit: "update" }
+    resources :orders, only: [:index, :show]
+  end
+
+  scope module: :vendor do
+    resource :vendor, only: [:show, :edit, :update], path_names: { edit: "update" }
   end
 end
