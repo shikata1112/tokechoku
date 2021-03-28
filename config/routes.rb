@@ -17,9 +17,9 @@ Rails.application.routes.draw do
       end
     end
 
-    resource :user, only: [:edit, :update]
-    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+    resource :user, only: [:edit, :update], path_names: { edit: "profile" }
+    resources :addresses, only: [:index, :create, :edit, :update, :destroy], path_names: { edit: "update" }
     resources :watch_lists, only: [:index, :create, :destroy]
-    resources :cards, only: [:index, :create, :edit, :update, :destroy]
+    resources :cards, only: [:index, :create, :edit, :update, :destroy], path_names: { edit: "update" }
   end
 end
