@@ -1,29 +1,51 @@
 Rails.application.routes.draw do
 
-  devise_for :users, controllers: {
-    sessions:      "users/sessions",
-    passwords:     "users/passwords",
-    registrations: "users/registrations"
-  }
+  devise_for :user,
+    controllers: {
+      sessions:      "devise_user/sessions",
+      passwords:     "devise_user/passwords",
+      registrations: "devise_user/registrations"
+    },
+    path: "",
+    path_names: {
+      sign_up: "",
+      sign_in: "login",
+      sign_out: "logout",
+      registration: "signup"
+    }
 
-  devise_for :vendors, controllers: {
-    sessions:      "vendors/sessions",
-    passwords:     "vendors/passwords",
-    registrations: "vendors/registrations"
-  }
+  devise_for :vendor,
+    controllers: {
+      sessions:      "devise_vendor/sessions",
+      passwords:     "devise_vendor/passwords",
+      registrations: "devise_vendor/registrations"
+    },
+    path_names: {
+      sign_up: "",
+      sign_in: "login",
+      sign_out: "logout",
+      registration: "signup"
+    }
 
-  devise_for :admins, controllers: {
-    sessions:      "admins/sessions",
-    passwords:     "admins/passwords",
-    registrations: "admins/registrations"
-  }
+  devise_for :admin,
+    controllers: {
+      sessions:      "devise_admin/sessions",
+      passwords:     "devise_admin/passwords",
+      registrations: "devise_admin/registrations"
+    },
+    path_names: {
+      sign_up: "",
+      sign_in: "login",
+      sign_out: "logout",
+      registration: "signup"
+    }
 
   scope module: :common do
-    get "top", to: 'home#top'
-    get "about", to: 'home#about'
-    get "user_guide", to: 'home#user_guide'
-    get "warranty", to: 'home#warranty'
-    get "vendor_guide", to: 'home#vendor_guide'
+    get "top", to: "home#top"
+    get "about", to: "home#about"
+    get "user_guide", to: "home#user_guide"
+    get "warranty", to: "home#warranty"
+    get "vendor_guide", to: "home#vendor_guide"
 
     resources :watches, only: [:show, :index]
     resources :brands, only: [:index]
