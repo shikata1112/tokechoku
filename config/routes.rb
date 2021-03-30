@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # devise_for :admins
 
   devise_for :users, controllers: {
     sessions:      "users/sessions",
@@ -11,6 +10,12 @@ Rails.application.routes.draw do
     sessions:      "vendors/sessions",
     passwords:     "vendors/passwords",
     registrations: "vendors/registrations"
+  }
+
+  devise_for :admins, controllers: {
+    sessions:      "admins/sessions",
+    passwords:     "admins/passwords",
+    registrations: "admins/registrations"
   }
 
   scope module: :common do
@@ -47,5 +52,11 @@ Rails.application.routes.draw do
 
   scope module: :vendor do
     resource :vendor, only: [:show, :edit, :update], path_names: { edit: "update" }
+  end
+
+  namespace :admin do
+    resources :members, only: [:index, :show, :edit, :update]
+    resources :vendors, only: [:index, :show, :edit, :update]
+    resources :inquiries, only: [:index, :show]
   end
 end
