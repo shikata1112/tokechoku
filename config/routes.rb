@@ -65,6 +65,9 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :create, :edit, :update, :destroy], path_names: { edit: "update" }
     resources :watch_lists, only: [:index, :create, :destroy]
     resources :cards, only: [:index, :create, :edit, :update, :destroy], path_names: { edit: "update" }
+    resource :inquiries, only: [:new, :create], path_names: { new: "" }, path: 'inquiry' do
+      get 'completed', to: "inquiries#thanks", on: :collection
+    end
   end
 
   namespace :vendor do
