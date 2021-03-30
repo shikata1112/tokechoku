@@ -50,14 +50,13 @@ ActiveRecord::Schema.define(version: 2021_03_29_110231) do
   end
 
   create_table "inquiries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "name", null: false
-    t.string "email", null: false
-    t.string "phone_number", null: false
-    t.string "content", null: false
+    t.string "name", null: false, comment: "ユーザー名"
+    t.string "email", null: false, comment: "ユーザーアドレス"
+    t.string "phone_number", null: false, comment: "ユーザー電話番号"
+    t.string "content", null: false, comment: "本文"
+    t.boolean "is_completed", default: false, null: false, comment: "解決済みか"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_inquiries_on_user_id"
   end
 
   create_table "makers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -189,7 +188,6 @@ ActiveRecord::Schema.define(version: 2021_03_29_110231) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "cards", "users"
-  add_foreign_key "inquiries", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "orders", "watches"
   add_foreign_key "watch_lists", "users"
