@@ -68,6 +68,7 @@ gem 'rubocop', '~> 1.4', require: false
 gem 'dotenv-rails'
 gem 'slack-notifier'
 # gem 'skylight'
+gem 'discard', '~> 1.2'
 
 gem 'devise' 
 gem 'devise-bootstrap-views'

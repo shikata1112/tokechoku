@@ -111,6 +111,8 @@ GEM
       devise (>= 4.7.1)
     devise-i18n-views (0.3.7)
     diff-lcs (1.4.4)
+    discard (1.2.0)
+      activerecord (>= 4.2, < 7)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.6)
@@ -410,6 +412,7 @@ DEPENDENCIES
   devise-bootstrap-views
   devise-i18n
   devise-i18n-views
+  discard (~> 1.2)
   dotenv-rails
   erb2haml
   factory_bot_rails
