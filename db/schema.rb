@@ -67,9 +67,11 @@ ActiveRecord::Schema.define(version: 2021_03_29_110231) do
   end
 
   create_table "models", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "maker_id", null: false, comment: "メーカーID"
     t.string "name", null: false, comment: "時計モデル名称"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["maker_id"], name: "index_models_on_maker_id"
     t.index ["name"], name: "index_models_on_name", unique: true
   end
 
@@ -147,6 +149,10 @@ ActiveRecord::Schema.define(version: 2021_03_29_110231) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["email"], name: "index_vendors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_vendors_on_reset_password_token", unique: true
     t.index ["shop_name"], name: "index_vendors_on_shop_name", unique: true
@@ -188,6 +194,7 @@ ActiveRecord::Schema.define(version: 2021_03_29_110231) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "cards", "users"
+  add_foreign_key "models", "makers"
   add_foreign_key "orders", "users"
   add_foreign_key "orders", "watches"
   add_foreign_key "watch_lists", "users"

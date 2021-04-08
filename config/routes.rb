@@ -18,14 +18,18 @@ Rails.application.routes.draw do
     controllers: {
       sessions:      "devise_vendor/sessions",
       passwords:     "devise_vendor/passwords",
-      registrations: "devise_vendor/registrations"
+      registrations: "devise_vendor/registrations",
+      confirmations: "devise_vendor/confirmations"
     },
     path_names: {
       sign_up: "",
       sign_in: "login",
-      sign_out: "logout",
       registration: "signup"
     }
+  
+  devise_scope :vendor do
+    get 'confirm_email', to: 'devise_vendor/registrations#confirm_email'
+  end
 
   devise_for :admin,
     controllers: {
@@ -41,7 +45,7 @@ Rails.application.routes.draw do
     }
 
   scope module: :common do
-    get "top", to: "home#top"
+    root to: "home#top"
     get "about", to: "home#about"
     get "user_guide", to: "home#user_guide"
     get "warranty", to: "home#warranty"
@@ -65,8 +69,8 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :create, :edit, :update, :destroy], path_names: { edit: "update" }
     resources :watch_lists, only: [:index, :create, :destroy]
     resources :cards, only: [:index, :create, :edit, :update, :destroy], path_names: { edit: "update" }
-    resource :inquiries, only: [:new, :create], path_names: { new: "" }, path: 'inquiry' do
-      get 'completed', to: "inquiries#thanks", on: :collection
+    resource :inquiries, only: [:new, :create], path_names: { new: "" }, path: "inquiry" do
+      get "completed", to: "inquiries#thanks", on: :collection
     end
   end
 
@@ -76,7 +80,9 @@ Rails.application.routes.draw do
   end
 
   scope module: :vendor do
-    resource :vendor, only: [:show, :edit, :update], path_names: { edit: "update" }
+    resource :vendor, only: [:show, :edit, :update], path_names: { edit: "update" } do
+      get "top", to: "vendors#top"
+    end
   end
 
   namespace :admin do

@@ -1,0 +1,24 @@
+<header>
+  <nav class="navbar navbar-expand navbar-light">
+    <%= link_to "キャリバーサンプル", root_path, class: 'navbar-brand' %>
+    <div id="Navber">
+      <ul class="navbar-nav">
+        <% if vendor_signed_in? %>
+          <li class="nav-item active">
+            <%= link_to 'vendorアカウント編集', edit_vendor_registration_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to 'vendorログアウト', destroy_vendor_session_path, method: :delete, class: 'nav-link' %>
+          </li>
+        <% else %>
+          <li class="nav-item active">
+            <%= link_to "vendor新規登録", new_vendor_registration_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "vendorログイン", new_vendor_session_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>

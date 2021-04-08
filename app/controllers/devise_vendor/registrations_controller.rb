@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 class DeviseVendor::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_account_update_params, only: [:update]
+
+  def confirm_email
+  end
 
   # GET /resource/sign_up
   # def new
@@ -41,10 +44,25 @@ class DeviseVendor::RegistrationsController < Devise::RegistrationsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:shop_name,
+                                                       :introduction,
+                                                       :last_name,
+                                                       :first_name,
+                                                       :kana_last_name,
+                                                       :kana_first_name,
+                                                       :birth_date,
+                                                       :phone_number,
+                                                       :postcode,
+                                                       :prefacture,
+                                                       :city,
+                                                       :house_number,
+                                                       :house_number,
+                                                       :building
+                                                       ])
+  end
 
+  
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
   #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
@@ -55,8 +73,15 @@ class DeviseVendor::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_in_path_for(resource)
+    top_vendor_path
+  end
+
+  def after_sign_out_path_for(resource)
+    new_vendor_session_path
+  end
+
+  def after_inactive_sign_up_path_for(resource)
+    confirm_email_path
+  end
 end
