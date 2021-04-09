@@ -66,7 +66,15 @@
 
     .form-group
       = f.label :password_confirmation, "パスワード（確認用）"
-      = f.password_field :password_confirmation, autocomplete: "current-password", required: true, minlength: @minimum_password_length, maxlength: "30"                          |
+      = f.password_field :password_confirmation, autocomplete: "current-password", required: true, minlength: @minimum_password_length, maxlength: "30"
+    
+    .form-group
+      = f.label :front_id_image, "身分証（表）"
+      = f.file_field :front_id_image
+
+    .form-group
+      = f.label :back_id_image, "身分証（裏）"
+      = f.file_field :back_id_image
 
     .form-group
       = f.submit "送信する", class: "btn btn-primary btn-block"

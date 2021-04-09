@@ -24,12 +24,10 @@ Rails.application.routes.draw do
     path_names: {
       sign_up: "",
       sign_in: "login",
-      registration: "signup"
+      sign_out: "logout",
+      registration: "registration",
+      edit: "update"
     }
-  
-  devise_scope :vendor do
-    get 'confirm_email', to: 'devise_vendor/registrations#confirm_email'
-  end
 
   devise_for :admin,
     controllers: {

@@ -11,6 +11,7 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -27,6 +28,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'bullet'  # N+1を検出
   gem 'rack-mini-profiler', require: false # パフォーマンス測定
+  gem 'awesome_print'
 end
 
 group :test do
@@ -57,7 +59,6 @@ gem 'discard', '~> 1.2'
 gem 'devise' 
 gem 'devise-bootstrap-views'
 gem 'devise-i18n'
-gem 'devise-i18n-views'
 gem 'rails-i18n'
 
 gem 'recaptcha', require: "recaptcha/rails"
