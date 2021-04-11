@@ -43,7 +43,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'haml-rails'
 gem 'erb2haml'
-gem 'jquery-rails'
 gem 'bootstrap', '~> 4.6.0'
 gem 'hotwire-rails'
 gem 'pry-rails'
@@ -63,7 +62,7 @@ gem 'rails-i18n'
 
 gem 'recaptcha', require: "recaptcha/rails"
 
-gem 'jp_prefecture' # 住所自動入力(要検討)
+gem 'jp_prefecture'
 
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"

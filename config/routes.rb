@@ -29,6 +29,10 @@ Rails.application.routes.draw do
       edit: "update"
     }
 
+  devise_scope :vendor do
+    get "authentication_email", to: "devise_vendor/registrations#email"
+  end
+
   devise_for :admin,
     controllers: {
       sessions:      "devise_admin/sessions",

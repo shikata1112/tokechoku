@@ -28,19 +28,21 @@
 
     .form-group
       = f.label :birth_date, "生年月日" 
-      = f.text_field :birth_date, autocomplete: "生年月日", required: true
+      = f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1990, 1, 1)
 
     .form-group
       = f.label :phone_number, "電話番号" 
       = f.text_field :phone_number, autocomplete: "電話番号", required: true
+      %i （半角数字）
 
     .form-group
       = f.label :postcode, "郵便番号" 
       = f.text_field :postcode, autocomplete: "郵便番号", required: true
+      %i （ハイフンなし）
 
     .form-group
-      = f.label :prefacture, "都道府県" 
-      = f.text_field :prefacture, autocomplete: "都道府県", required: true
+      = f.label :prefecture_name, "都道府県"
+      = f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '選択してください' }
 
     .form-group
       = f.label :city, "市区町村" 
@@ -65,7 +67,7 @@
         %small.form-text.text-muted= t("devise.shared.minimum_password_length", count: @minimum_password_length)
 
     .form-group
-      = f.label :password_confirmation, "パスワード（確認用）"
+      = f.label :password_confirmation, "パスワード（確認）"
       = f.password_field :password_confirmation, autocomplete: "current-password", required: true, minlength: @minimum_password_length, maxlength: "30"
     
     .form-group

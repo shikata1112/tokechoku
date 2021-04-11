@@ -3,7 +3,7 @@
 class DeviseVendor::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-
+  
   protected
 
   def configure_sign_up_params
@@ -16,7 +16,7 @@ class DeviseVendor::RegistrationsController < Devise::RegistrationsController
                                                        :birth_date,
                                                        :phone_number,
                                                        :postcode,
-                                                       :prefacture,
+                                                       :prefecture_code,
                                                        :city,
                                                        :house_number,
                                                        :house_number,
@@ -39,7 +39,7 @@ class DeviseVendor::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_inactive_sign_up_path_for(resource)
-    vendor_confirmation_path
+    authentication_email_path
   end
 
   def after_update_path_for(resource)
