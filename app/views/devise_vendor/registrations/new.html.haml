@@ -28,7 +28,7 @@
 
     .form-group
       = f.label :birth_date, "生年月日" 
-      = f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1990, 1, 1)
+      = f.date_select :birth_date, use_month_numbers: true, start_year: 1920, end_year: (Time.now.year - 18), default: Date.new(1990, 1, 1)
 
     .form-group
       = f.label :phone_number, "電話番号" 

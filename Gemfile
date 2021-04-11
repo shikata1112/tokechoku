@@ -54,6 +54,7 @@ gem 'dotenv-rails'
 gem 'slack-notifier'
 # gem 'skylight'
 gem 'discard', '~> 1.2'
+gem 'activestorage-validator'
 
 gem 'devise' 
 gem 'devise-bootstrap-views'
