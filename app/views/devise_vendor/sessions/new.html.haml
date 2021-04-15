@@ -1,5 +1,6 @@
 %h2 Log in
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = bootstrap_devise_error_messages!
   .field
     = f.label :email
     %br/

@@ -54,7 +54,7 @@ ja:
       vendor: 出品者
   devise_vendor:
     confirmations:
-      confirmed: メールアドレスが確認できました。
+      confirmed: 出品者情報の登録が完了しました。
       new:
         resend_confirmation_instructions: アカウント確認メール再送
       send_instructions: アカウントの有効化について数分以内にメールでご連絡します。

@@ -154,15 +154,15 @@ ActiveRecord::Schema.define(version: 2021_04_09_103249) do
     t.string "kana_first_name", null: false, comment: "メイ"
     t.string "shop_name", null: false, comment: "店舗名"
     t.text "introduction", comment: "店舗紹介"
-    t.string "email", null: false, comment: "メールアドレス"
+    t.string "email", default: "", null: false, comment: "メールアドレス"
     t.date "birth_date", null: false, comment: "生年月日"
     t.string "phone_number", null: false, comment: "電話番号"
-    t.integer "postcode", null: false, comment: "郵便番号"
+    t.string "postcode", null: false, comment: "郵便番号"
     t.integer "prefecture_code", null: false, comment: "都道府県コード"
     t.string "city", null: false, comment: "市区町村"
     t.string "house_number", null: false, comment: "番地"
     t.string "building", comment: "ビル・建物名"
-    t.string "encrypted_password", null: false, comment: "パスワード"
+    t.string "encrypted_password", default: "", null: false, comment: "パスワード"
     t.boolean "is_active", default: true, null: false, comment: "有効性"
     t.boolean "is_certificated", default: false, null: false, comment: "身分証明済み"
     t.string "reset_password_token"
@@ -176,7 +176,6 @@ ActiveRecord::Schema.define(version: 2021_04_09_103249) do
     t.string "unconfirmed_email"
     t.index ["email"], name: "index_vendors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_vendors_on_reset_password_token", unique: true
-    t.index ["shop_name"], name: "index_vendors_on_shop_name", unique: true
   end
 
   create_table "watch_lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
