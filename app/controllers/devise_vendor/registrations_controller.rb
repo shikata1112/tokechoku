@@ -39,7 +39,7 @@ class DeviseVendor::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_inactive_sign_up_path_for(resource)
-    authentication_email_path
+    vendor_authentication_email_path
   end
 
   def after_update_path_for(resource)

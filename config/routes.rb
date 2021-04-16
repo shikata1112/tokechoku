@@ -30,7 +30,8 @@ Rails.application.routes.draw do
     }
 
   devise_scope :vendor do
-    get "authentication_email", to: "devise_vendor/registrations#email"
+    get "vendor/authentication_email", to: "devise_vendor/registrations#email"
+    patch "vendor/enter_info", to: "devise_vendor/confirmations#enter_info"
   end
 
   devise_for :admin,
