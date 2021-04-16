@@ -1,21 +1,83 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise_vendor/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise_vendor/shared/links"
+.container
+  %h1 出品者として登録する
+
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = bootstrap_devise_error_messages!
+
+    .form-group
+      = f.label :shop_name, "ショップ名"
+      = f.text_field :shop_name, autocomplete: "shop_name", required: true
+
+    = f.hidden_field :introduction, value: "よろしくお願いします。"
+
+    .form-group
+      = f.label :last_name, "姓"
+      = f.text_field :last_name, autocomplete: "姓", required: true
+
+    .form-group
+      = f.label :first_name, "名"
+      = f.text_field :first_name, autocomplete: "名", required: true
+
+    .form-group
+      = f.label :kana_last_name, "セイ"
+      = f.text_field :kana_last_name, autocomplete: "セイ", required: true
+
+    .form-group
+      = f.label :kana_first_name, "メイ"
+      = f.text_field :kana_first_name, autocomplete: "メイ", required: true
+
+    .form-group
+      = f.label :birth_date, "生年月日" 
+      = f.date_select :birth_date, use_month_numbers: true, start_year: 1920, end_year: (Time.now.year - 18), default: Date.new(1990, 1, 1)
+
+    .form-group
+      = f.label :phone_number, "電話番号" 
+      = f.text_field :phone_number, autocomplete: "電話番号", required: true
+      %i （半角数字）
+
+    .form-group
+      = f.label :postcode, "郵便番号" 
+      = f.text_field :postcode, autocomplete: "郵便番号", required: true
+      %i （ハイフンなし）
+
+    .form-group
+      = f.label :prefecture_name, "都道府県"
+      = f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '選択してください' }
+
+    .form-group
+      = f.label :city, "市区町村" 
+      = f.text_field :city, autocomplete: "市区町村", required: true
+
+    .form-group
+      = f.label :house_number, "番地" 
+      = f.text_field :house_number, autocomplete: "番地", required: true
+
+    .form-group
+      = f.label :building, "ビル・建物名" 
+      = f.text_field :building, autocomplete: "ビル・建物名"
+
+    .form-group
+      = f.label :email, "Eメール"
+      = f.text_field :email, autocomplete: "Eメール", required: true
+
+    .form-group
+      = f.label :password, "パスワード"
+      = f.password_field :password, autocomplete: "current-password", required: true, minlength: @minimum_password_length, maxlength: "30"
+      - if @minimum_password_length
+        %small.form-text.text-muted= t("devise.shared.minimum_password_length", count: @minimum_password_length)
+
+    .form-group
+      = f.label :password_confirmation, "パスワード（確認）"
+      = f.password_field :password_confirmation, autocomplete: "current-password", required: true, minlength: @minimum_password_length, maxlength: "30"
+    
+    .form-group
+      = f.label :front_id_image, "身分証（表）"
+      = f.file_field :front_id_image
+
+    .form-group
+      = f.label :back_id_image, "身分証（裏）"
+      = f.file_field :back_id_image
+
+    .form-group
+      = f.submit "送信する", class: "btn btn-primary btn-block"
+  = render "devise_vendor/shared/links"

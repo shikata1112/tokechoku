@@ -12,10 +12,10 @@ class DeviseCreateVendors < ActiveRecord::Migration[6.0]
       t.string :shop_name, null: false, comment: "店舗名"
       t.text   :introduction, comment: "店舗紹介"
       t.string :email, null: false, comment: "メールアドレス"
-      t.string :birth_date, null: false, comment: "生年月日"
+      t.date :birth_date, null: false, comment: "生年月日"
       t.string :phone_number, null: false, comment: "電話番号"
-      t.string :postcode, null: false, comment: "郵便番号"
-      t.string :prefacture, null: false, comment: "都道府県"
+      t.integer :postcode, null: false, comment: "郵便番号"
+      t.integer :prefecture_code, null: false, comment: "都道府県コード"
       t.string :city, null: false, comment: "市区町村"
       t.string :house_number, null: false, comment: "番地"
       t.string :building, comment: "ビル・建物名"
@@ -31,6 +31,12 @@ class DeviseCreateVendors < ActiveRecord::Migration[6.0]
       t.datetime :remember_created_at
 
       t.timestamps null: false
+
+      ## Confirmable
+      t.string   :confirmation_token
+      t.datetime :confirmed_at
+      t.datetime :confirmation_sent_at
+      t.string   :unconfirmed_email
     end
 
     add_index :vendors, :shop_name,            unique: true

@@ -10,13 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_29_110231) do
+ActiveRecord::Schema.define(version: 2021_04_09_103249) do
+
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
     t.string "name", null: false, comment: "宛先名"
     t.string "postcode", null: false, comment: "郵便番号"
-    t.string "prefacture", null: false, comment: "都道府県"
+    t.string "prefecture", null: false, comment: "都道府県"
     t.string "city", null: false, comment: "市区町村"
     t.string "house_number", null: false, comment: "番地"
     t.string "building", comment: "ビル・建物名"
@@ -67,9 +88,11 @@ ActiveRecord::Schema.define(version: 2021_03_29_110231) do
   end
 
   create_table "models", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "maker_id", null: false, comment: "メーカーID"
     t.string "name", null: false, comment: "時計モデル名称"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["maker_id"], name: "index_models_on_maker_id"
     t.index ["name"], name: "index_models_on_name", unique: true
   end
 
@@ -80,13 +103,13 @@ ActiveRecord::Schema.define(version: 2021_03_29_110231) do
     t.string "billing_name", null: false, comment: "請求先名称"
     t.string "billing_phone_number", null: false, comment: "請求先電話番号"
     t.string "billing_postcode", null: false, comment: "請求先郵便番号"
-    t.string "billing_prefacture", null: false, comment: "請求先都道府県"
+    t.string "billing_prefecture", null: false, comment: "請求先都道府県"
     t.string "billing_city", null: false, comment: "請求先市区町村"
     t.string "billing_house_number", null: false, comment: "請求先番地"
     t.string "billing_building", null: false, comment: "請求先ビル・建物名"
     t.string "delivery_name", null: false, comment: "配送先名称"
     t.string "delivery_postcode", null: false, comment: "配送先郵便番号"
-    t.string "delivery_prefacture", null: false, comment: "配送先都道府県"
+    t.string "delivery_prefecture", null: false, comment: "配送先都道府県"
     t.string "delivery_city", null: false, comment: "配送先市区町村"
     t.string "delivery_house_number", null: false, comment: "配送先番地"
     t.string "delivery_building", null: false, comment: "配送先ビル・建物名"
@@ -109,7 +132,7 @@ ActiveRecord::Schema.define(version: 2021_03_29_110231) do
     t.string "birth_date", null: false, comment: "生年月日"
     t.string "phone_number", null: false, comment: "電話番号"
     t.string "postcode", null: false, comment: "郵便番号"
-    t.string "prefacture", null: false, comment: "都道府県"
+    t.string "prefecture", null: false, comment: "都道府県"
     t.string "city", null: false, comment: "市区町村"
     t.string "house_number", null: false, comment: "番地"
     t.string "building", comment: "ビル・建物名"
@@ -132,10 +155,10 @@ ActiveRecord::Schema.define(version: 2021_03_29_110231) do
     t.string "shop_name", null: false, comment: "店舗名"
     t.text "introduction", comment: "店舗紹介"
     t.string "email", null: false, comment: "メールアドレス"
-    t.string "birth_date", null: false, comment: "生年月日"
+    t.date "birth_date", null: false, comment: "生年月日"
     t.string "phone_number", null: false, comment: "電話番号"
-    t.string "postcode", null: false, comment: "郵便番号"
-    t.string "prefacture", null: false, comment: "都道府県"
+    t.integer "postcode", null: false, comment: "郵便番号"
+    t.integer "prefecture_code", null: false, comment: "都道府県コード"
     t.string "city", null: false, comment: "市区町村"
     t.string "house_number", null: false, comment: "番地"
     t.string "building", comment: "ビル・建物名"
@@ -147,6 +170,10 @@ ActiveRecord::Schema.define(version: 2021_03_29_110231) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["email"], name: "index_vendors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_vendors_on_reset_password_token", unique: true
     t.index ["shop_name"], name: "index_vendors_on_shop_name", unique: true
@@ -186,8 +213,10 @@ ActiveRecord::Schema.define(version: 2021_03_29_110231) do
     t.index ["name", "brand", "model_number"], name: "index_watches_on_name_and_brand_and_model_number"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "users"
   add_foreign_key "cards", "users"
+  add_foreign_key "models", "makers"
   add_foreign_key "orders", "users"
   add_foreign_key "orders", "watches"
   add_foreign_key "watch_lists", "users"

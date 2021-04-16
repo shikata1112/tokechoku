@@ -14,7 +14,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :birth_date, null: false, comment: "生年月日"
       t.string :phone_number, null: false, comment: "電話番号"
       t.string :postcode, null: false, comment: "郵便番号"
-      t.string :prefacture, null: false, comment: "都道府県"
+      t.string :prefecture, null: false, comment: "都道府県"
       t.string :city, null: false, comment: "市区町村"
       t.string :house_number, null: false, comment: "番地"
       t.string :building, comment: "ビル・建物名"

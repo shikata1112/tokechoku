@@ -1,0 +1,7 @@
+= render "shared/flash_messages"
+
+- if current_vendor.front_id_image.attached?
+  = image_tag current_vendor.front_id_image.variant(resize_to_limit: [100, 100])
+
+- if current_vendor.back_id_image.attached?
+  = image_tag current_vendor.back_id_image.variant(resize_to_limit: [100, 100])

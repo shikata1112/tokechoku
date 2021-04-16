@@ -3,7 +3,7 @@ FactoryBot.define do
     user { nil }
     name { "MyString" }
     postcode { "MyString" }
-    prefacture { "MyString" }
+    prefecture { "MyString" }
     city { "MyString" }
     house_number { "MyString" }
     building { "MyString" }
